@@ -15,8 +15,9 @@ To reproduce the shim binary:
 
 ```sh
 docker build -t vyos-shim-build .
-# then follow rhboot/shim-review submission template steps inside the container
 ```
+
+`docker build` is self-contained: it clones the source repos, builds the shim package, and verifies the resulting binary against the committed `shimx64.efi` via `hexdump`/`diff`. A non-zero exit means the build does not reproduce.
 
 Submitted artefacts live at the repo root (`shimx64.efi`, `shim_16.0-1+vyos1_amd64.build`, `shim_16.0-1+vyos1_amd64.buildinfo`, certificate files).
 
@@ -34,7 +35,7 @@ Pairs with `vyos/efi-boot-shim` (the source repo for the VyOS shim build). Shim 
 ## Conventions
 
 - Default branch `main` (matches upstream).
-- Tag submissions per upstream rules: `vyos-shim-x64-YYYYMMDD`.
+- Tag submissions per upstream rules: `vyos-shim-{version}-{arch}-{YYYYMMDD}` (e.g. `vyos-shim-16.0-amd64-20250707`).
 - This repo follows the **upstream** rhboot/shim-review template — do not VyOS-ify the issue/PR templates without breaking submissions.
 
 ## Mirror relationship
