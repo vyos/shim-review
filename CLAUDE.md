@@ -15,9 +15,8 @@ To reproduce the shim binary:
 
 ```sh
 docker build -t vyos-shim-build .
+# then follow rhboot/shim-review submission template steps inside the container
 ```
-
-`docker build` is self-contained: it clones the source repos, builds the shim package, and verifies the resulting binary against the committed `shimx64.efi` via `hexdump`/`diff`. A non-zero exit means the build does not reproduce.
 
 Submitted artefacts live at the repo root (`shimx64.efi`, `shim_16.0-1+vyos1_amd64.build`, `shim_16.0-1+vyos1_amd64.buildinfo`, certificate files).
 
@@ -35,7 +34,7 @@ Pairs with `vyos/efi-boot-shim` (the source repo for the VyOS shim build). Shim 
 ## Conventions
 
 - Default branch `main` (matches upstream).
-- Tag submissions per upstream rules: `vyos-shim-{version}-{arch}-{YYYYMMDD}` (e.g. `vyos-shim-16.0-amd64-20250707`).
+- Tag submissions per upstream rules: `vyos-shim-x64-YYYYMMDD`.
 - This repo follows the **upstream** rhboot/shim-review template — do not VyOS-ify the issue/PR templates without breaking submissions.
 
 ## Mirror relationship
@@ -47,7 +46,3 @@ No mirror twin. Lives only in `vyos`. The upstream is `rhboot/shim-review`, trac
 - The artefact files at the repo root are what reviewers download — keep names canonical and matching the build log.
 - Any rebuild requires the secure-boot CA chain to remain identical; see `vyos-uefi-ca.der`.
 - Don't repurpose this repo for general shim dev — that's `vyos/efi-boot-shim`.
-
----
-
-This file is mirrored on Confluence: [`vyos/shim-review`](https://internal.confluence.vyos.com/wiki/spaces/VYOS/pages/818413646). The Confluence page also carries the per-repo audit data (settings, workflows, secret counts, hygiene) that complements this CLAUDE.md. Edit either side; resync via the documentation pipeline.
