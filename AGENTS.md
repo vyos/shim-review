@@ -14,7 +14,7 @@ VyOS's submission to the upstream `rhboot/shim-review` process: signed UEFI Secu
 To reproduce the shim binary:
 
 ```sh
-docker build -t vyos-shim-build .
+docker build -t vyos-shim-build.
 ```
 
 `docker build` is self-contained: it clones the source repos, builds the shim package, and verifies the resulting binary against the committed `shimx64.efi` via `hexdump`/`diff`. A non-zero exit means the build does not reproduce.
